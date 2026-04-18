@@ -10,7 +10,7 @@
 100 LET grain=2800: LET acres=1000
 110 LET harv=3: LET rats=0: LET arr=0
 120 LET starved=0: LET totst=0: LET plague=0
-130 LET news$="": LET evt$=""
+130 LET n$="": LET e$=""
 140 FOR year=1 TO 10
 150 CLS
 160 PRINT "YEAR ";year;" OF YOUR REIGN"
@@ -20,8 +20,8 @@
 200 IF year>1 AND starved>0 THEN PRINT "Starved:        ";starved
 210 IF year>1 AND arr>0 THEN PRINT "Newcomers:      ";arr
 220 IF plague=1 THEN PRINT "Plague struck!"
-230 IF news$<>"" THEN PRINT news$
-240 IF evt$<>"" THEN PRINT evt$
+230 IF n$<>"" THEN PRINT n$
+240 IF e$<>"" THEN PRINT e$
 250 PRINT "Acres of land:  ";acres
 260 IF year>1 THEN PRINT "Last harvest:   ";harv;" bu/acre"
 270 IF year>1 THEN PRINT "Rats devoured:  ";rats
@@ -57,7 +57,7 @@
 570 LET grain=grain+pl*harv
 580 LET rats=0
 590 IF RND<0.4 THEN LET rats=INT (grain*RND*0.3): LET grain=grain-rats
-600 LET news$=""
+600 LET n$=""
 610 IF RND<0.25 THEN GO SUB 2000
 620 LET startpop=pop
 630 LET eaten=INT (fd/20)
@@ -69,18 +69,18 @@
 690 IF dsrt<0 THEN LET dsrt=0
 700 IF dsrt>warr THEN LET dsrt=warr
 710 LET warr=warr-dsrt: LET pop=pop+dsrt
-720 IF dsrt>0 THEN LET news$=news$+" "+STR$ dsrt+" warriors deserted."
+720 IF dsrt>0 THEN LET n$=n$+" "+STR$ dsrt+" warriors deserted."
 730 LET arr=0
 740 IF starved=0 AND pop>0 THEN LET arr=INT (RND*10)+1: LET pop=pop+arr
 750 LET plague=0
 760 IF RND<0.12 THEN LET plague=1: LET pop=INT (pop/2): LET warr=INT (warr/2)
-770 LET evt$=""
+770 LET e$=""
 780 LET ev=INT (RND*8)
-790 IF ev=0 THEN LET st=INT (grain*(0.05+RND*0.15)): LET grain=grain-st: LET evt$="Spies stole "+STR$ st+" grain."
-800 IF ev=1 THEN LET fi=INT (grain*(0.1+RND*0.2)): LET grain=grain-fi: LET evt$="Fire took "+STR$ fi+" grain."
-810 IF ev=2 THEN LET gi=INT (RND*400)+100: LET grain=grain+gi: LET evt$="Traders gave "+STR$ gi+" grain."
-820 IF ev=3 THEN LET evt$="A mild spring favours all."
-830 IF ev=4 THEN LET evt$="Ill omens darken the sky."
+790 IF ev=0 THEN LET st=INT (grain*(0.05+RND*0.15)): LET grain=grain-st: LET e$="Spies stole "+STR$ st+" grain."
+800 IF ev=1 THEN LET fi=INT (grain*(0.1+RND*0.2)): LET grain=grain-fi: LET e$="Fire took "+STR$ fi+" grain."
+810 IF ev=2 THEN LET gi=INT (RND*400)+100: LET grain=grain+gi: LET e$="Traders gave "+STR$ gi+" grain."
+820 IF ev=3 THEN LET e$="A mild spring favours all."
+830 IF ev=4 THEN LET e$="Ill omens darken the sky."
 840 IF startpop>0 AND starved*100/startpop>45 THEN GO TO 1700
 850 IF pop=0 THEN GO TO 1700
 860 NEXT year
@@ -107,10 +107,10 @@
 2010 LET foe=INT (RND*80)+20
 2020 PRINT "Enemies! ";foe;" raiders attack."
 2030 PRINT "Your warriors: ";warr
-2040 IF warr>=foe THEN LET loot=foe*5: LET grain=grain+loot: LET cas=INT (foe/4): LET warr=warr-cas: LET news$="Victory! Plunder: "+STR$ loot+" grain.": GO TO 2100
+2040 IF warr>=foe THEN LET loot=foe*5: LET grain=grain+loot: LET cas=INT (foe/4): LET warr=warr-cas: LET n$="Victory! Plunder: "+STR$ loot+" grain.": GO TO 2100
 2050 LET dead=warr: LET warr=0
 2060 LET taken=(foe-dead)*(INT (RND*15)+5)
 2070 IF taken>grain THEN LET taken=grain
 2080 LET grain=grain-taken
-2090 LET news$="Defeat! Enemies took "+STR$ taken+" grain."
+2090 LET n$="Defeat! Enemies took "+STR$ taken+" grain."
 2100 RETURN
