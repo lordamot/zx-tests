@@ -11,20 +11,20 @@
 110 LET harv=3: LET rats=0: LET arr=0
 120 LET starved=0: LET totst=0: LET plague=0
 130 LET n$="": LET e$=""
-140 FOR year=1 TO 10
+140 FOR y=1 TO 10
 150 CLS
-160 PRINT "YEAR ";year;" OF YOUR REIGN"
+160 PRINT "YEAR ";y;" OF YOUR REIGN"
 170 PRINT "--------------------"
 180 PRINT "Peasants:       ";pop
 190 PRINT "Warriors:       ";warr
-200 IF year>1 AND starved>0 THEN PRINT "Starved:        ";starved
-210 IF year>1 AND arr>0 THEN PRINT "Newcomers:      ";arr
+200 IF y>1 AND starved>0 THEN PRINT "Starved:        ";starved
+210 IF y>1 AND arr>0 THEN PRINT "Newcomers:      ";arr
 220 IF plague=1 THEN PRINT "Plague struck!"
 230 IF n$<>"" THEN PRINT n$
 240 IF e$<>"" THEN PRINT e$
 250 PRINT "Acres of land:  ";acres
-260 IF year>1 THEN PRINT "Last harvest:   ";harv;" bu/acre"
-270 IF year>1 THEN PRINT "Rats devoured:  ";rats
+260 IF y>1 THEN PRINT "Last harvest:   ";harv;" bu/acre"
+270 IF y>1 THEN PRINT "Rats devoured:  ";rats
 280 PRINT "Grain in store: ";grain
 290 LET price=INT (RND*10)+17
 300 PRINT "Land price:     ";price;" bu/acre"
@@ -83,9 +83,9 @@
 830 IF ev=4 THEN LET e$="Ill omens darken the sky."
 840 IF startpop>0 AND starved*100/startpop>45 THEN GO TO 1700
 850 IF pop=0 THEN GO TO 1700
-860 NEXT year
+860 NEXT y
 870 CLS
-880 PRINT "Your 10 years are over!": PRINT
+880 PRINT "Your 10 ys are over!": PRINT
 890 PRINT "Total starved:    ";totst
 900 PRINT "Final peasants:   ";pop
 910 PRINT "Final warriors:   ";warr
